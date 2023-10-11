@@ -11,7 +11,7 @@ pub fn animal_habitat(animal: &str) -> &'static str {
         2.0
     } else if animal == "snake" {
         3
-    } else {
+    } else if animal == "dinosaur"{
         "Unknown"
     };
 
