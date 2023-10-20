@@ -16,16 +16,13 @@
 
 
 // Put your function here!
-fn calculate_price_of_apples(quantity: u32) ->u32 {
-    let price: u32 =if quantity > 40{
-        1
-    }else{
-        2
-    };
-    quantity * price
+fn calculate_price_of_apples(ap: i32) -> i32{
+    if ap > 40{
+        ap
+    } else {
+        ap * 2
+    }
 }
-
-// fn calculate_price_of_apples {
 
 // Don't modify this function!
 #[test]

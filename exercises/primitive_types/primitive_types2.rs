@@ -31,5 +31,5 @@ fn main() {
         println!("Numerical!");
     } else {
         println!("Neither alphabetic nor numeric!");
-    };
+    }
 }
