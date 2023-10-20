@@ -43,19 +43,18 @@ impl Default for Person {
 
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
-        if s.is_empty() {
-            return Default::default()
+        let info: Vec<&str> = s.split(",").collect();
+        if info.len() != 2 {
+            return Person::default();
         }
-
-        match s.split_once(",") {
-            Some((name, _)) if name.is_empty() => Default::default(),
-            Some((name, age_str)) => match age_str.parse::<usize>(){
-                Ok(age) => Person{name: name.to_string(), age, },
-                Err(_) => Default::default(),
-            }
-            None => Default::default()
+        let (name, age) = (info[0].to_string(), info[1].parse::<usize>());
+        if name.is_empty() {
+            Person::default()
+        } else if age.is_err() {
+            Person::default()
+        } else {
+            Person { name, age: age.unwrap() }
         }
-
     }
 }
 

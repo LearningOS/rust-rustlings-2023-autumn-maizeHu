@@ -8,11 +8,9 @@
 // hint.
 
 
-
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
-use std::sync::Mutex;
 
 struct JobStatus {
     jobs_completed: u32,
@@ -26,7 +24,8 @@ fn main() {
         let handle = thread::spawn(move || {
             thread::sleep(Duration::from_millis(250));
             // TODO: You must take an action before you update a shared value
-            status_shared.lock().unwrap().jobs_completed += 1;
+            let mut s = status_shared.lock().unwrap();
+            s.jobs_completed += 1;
         });
         handles.push(handle);
     }

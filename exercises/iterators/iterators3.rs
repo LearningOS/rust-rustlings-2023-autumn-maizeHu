@@ -10,6 +10,7 @@
 // hint.
 
 
+use std::f32::consts::E;
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum DivisionError {
@@ -26,22 +27,23 @@ pub struct NotDivisibleError {
 // Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
 // Otherwise, return a suitable error.
 pub fn divide(a: i32, b: i32) -> Result<i32, DivisionError> {
-    match(a, b){
-        (_, 0) => return Err(DivisionError::DivideByZero),
-        (a, b) if a % b != 0 => return Err(DivisionError::NotDivisible(NotDivisibleError{dividend: a, divisor: b})),
-        _ => return Ok(a / b)
-
+    if b == 0 {
+        Err(DivisionError::DivideByZero)
+    }
+    else if a % b == 0 {
+        Ok(a/b)
+    } else {
+        Err(DivisionError::NotDivisible(NotDivisibleError { dividend: a, divisor: b }))
     }
 }
 
 // Complete the function and return a value of the correct type so the test
 // passes.
 // Desired output: Ok([1, 11, 1426, 3])
-fn result_with_list() -> Result<Vec<i32>, DivisionError> {
+fn result_with_list() -> Result<Vec<i32>, String> {
     let numbers = vec![27, 297, 38502, 81];
-    numbers.into_iter()
-    .map(|n| divide(n, 27))
-    .collect()
+    let division_results: Result<Vec<i32>, String> = Ok(numbers.into_iter().map(|n| divide(n, 27)).map(|r| r.unwrap()).collect());
+    division_results
 }
 
 // Complete the function and return a value of the correct type so the test
@@ -49,7 +51,8 @@ fn result_with_list() -> Result<Vec<i32>, DivisionError> {
 // Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
 fn list_of_results() -> Vec<Result<i32, DivisionError>> {
     let numbers = vec![27, 297, 38502, 81];
-    numbers.into_iter().map(|n| divide(n, 27)).collect()
+    let division_results = numbers.into_iter().map(|n| divide(n, 27)).collect::<Vec<Result<i32, DivisionError>>>();
+    division_results
 }
 
 #[cfg(test)]

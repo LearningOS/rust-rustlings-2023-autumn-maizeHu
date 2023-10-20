@@ -4,7 +4,6 @@
 // for a hint.
 
 
-
 fn main() {
     let vec0 = Vec::new();
 

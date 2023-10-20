@@ -14,13 +14,12 @@
 // No hints this time ;)
 
 
-
 // Put your function here!
-fn calculate_price_of_apples(ap: i32) -> i32{
-    if ap > 40{
-        ap
+fn calculate_price_of_apples (nums: i32) -> i32{
+    if nums > 40 {
+        nums
     } else {
-        ap * 2
+        nums * 2
     }
 }
 

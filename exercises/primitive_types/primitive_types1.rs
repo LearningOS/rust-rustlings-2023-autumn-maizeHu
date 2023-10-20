@@ -7,7 +7,6 @@
 // for a hint.
 
 
-
 fn main() {
     // Booleans (`bool`)
 

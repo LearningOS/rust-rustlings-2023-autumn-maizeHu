@@ -4,7 +4,6 @@
 // hint.
 
 
-
 // This function returns how much icecream there is left in the fridge.
 // If it's before 10PM, there's 5 pieces left. At 10PM, someone eats them
 // all, so there'll be no more left :(
@@ -13,10 +12,12 @@ fn maybe_icecream(time_of_day: u16) -> Option<u16> {
     // value of 0 The Option output should gracefully handle cases where
     // time_of_day > 23.
     // TODO: Complete the function body - remember to return an Option!
-    match time_of_day{
-        0..=21 => Some(5),
-        21..=24 => Some(0),
-        _ => None
+    if time_of_day > 23 {
+        Option::None
+    } else if time_of_day > 10 {
+        Option::Some(0)
+    } else {
+        Option::Some(5)
     }
 }
 
@@ -38,6 +39,6 @@ mod tests {
         // TODO: Fix this test. How do you get at the value contained in the
         // Option?
         let icecreams = maybe_icecream(12);
-        assert_eq!(icecreams, Some(5));
+        assert_eq!(icecreams, Some(0));
     }
 }

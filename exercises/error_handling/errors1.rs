@@ -17,7 +17,6 @@ pub fn generate_nametag_text(name: String) -> Result<String, String> {
     } else {
         Ok(format!("Hi! My name is {}", name))
     }
-    
 }
 
 #[cfg(test)]

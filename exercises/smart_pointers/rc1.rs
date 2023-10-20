@@ -1,4 +1,4 @@
-    // rc1.rs
+// rc1.rs
 //
 // In this exercise, we want to express the concept of multiple owners via the
 // Rc<T> type. This is a model of our solar system - there is a Sun type and
@@ -9,7 +9,6 @@
 // sun has multiple owners.
 //
 // Execute `rustlings hint rc1` or use the `hint` watch subcommand for a hint.
-
 
 
 use std::rc::Rc;
@@ -92,11 +91,11 @@ fn main() {
     println!("reference count = {}", Rc::strong_count(&sun)); // 4 references
 
     // TODO
-    drop(earth);
+    drop(venus);
     println!("reference count = {}", Rc::strong_count(&sun)); // 3 references
 
     // TODO
-    drop(venus);
+    drop(earth);
     println!("reference count = {}", Rc::strong_count(&sun)); // 2 references
 
     // TODO

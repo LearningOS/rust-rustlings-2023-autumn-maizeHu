@@ -20,19 +20,15 @@
 // hint.
 
 
-
 use std::num::ParseIntError;
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
-    /* let q = match item_quantity.parse::<i32>(){
-        Ok(a) => a,
-        Err(e) => return Err(e)
-    }; */
-    let q = item_quantity.parse::<i32>()?;
+    let qty = item_quantity.parse::<i32>()?;
 
-    Ok(q * 5 + 1)
+    Ok(qty * cost_per_item + processing_fee)
+    
 }
 
 #[cfg(test)]
